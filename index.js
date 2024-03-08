@@ -14,17 +14,6 @@ const server = http.createServer((req, res) => {
     url = `res${req.url}`;
   }
 
-  if (req.url.endsWith("#download")) {
-    const file = fs.createWriteStream(req.url);
-    const request = http.get(req.url, function (response) {
-      response.pipe(file);
-      file.on("finish", () => {
-        file.close();
-        console.log(`Downloaded ${req.url}`);
-      });
-    });
-  }
-
   res.setHeader("Content-Type", "text/plain");
 
   fs.readFile(url, "utf-8", (err, data) => {
