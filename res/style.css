@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(40, 40, 40);
+}
+
+* {
+  color:white;
+  font-family: Roboto, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  text-decoration-color: none;
+}
+
+a:hover {
+  color: rgb(120,120,120);
+}
