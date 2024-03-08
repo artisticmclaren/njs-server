@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
   fs.readFile(url, "utf-8", (err, data) => {
     if (err) {
       res.statusCode = 404;
-      res.end(`404\n\n${err}`);
+      res.end(`${res.statusCode}\n\n${err}`);
       return;
     }
 
