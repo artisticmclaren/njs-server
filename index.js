@@ -1,34 +1,13 @@
-const http = require("node:http");
-const hostname = "0.0.0.0";
-const port = 3000;
-const fs = require("node:fs");
+const express = require("express")
+const app = express()
+const port = 3000
 
-const server = http.createServer((req, res) => {
-  let url = "";
+app.use(express.static("res"))
 
-  if (req.url === "/") {
-    console.log("res/index.html");
-    url = "res/index.html";
-  } else {
-    console.log(`res${req.url}`);
-    url = `res${req.url}`;
-  }
+app.get("/", (req, res) =>{
+  res.send("Hello World!")
+})
 
-  res.setHeader("Content-Type", "text/plain");
-
-  fs.readFile(url, "utf-8", (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      res.end(`${res.statusCode}\n\n${err}`);
-      return;
-    }
-
-    console.log(data);
-    res.statusCode = 200;
-    res.end(data);
-  });
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`);
-});
+app.listen(port,()=> {
+  console.log(`listening on port ${port}.`)
+})
